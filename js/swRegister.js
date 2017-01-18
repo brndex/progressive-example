@@ -5,9 +5,8 @@
 define([], function () {
     var pushButton = document.querySelector('#enable-push');
     var isSubscribed = false;
-    var applicationServerPublicKey = 'BJPMaDrbRiUzH8IeMvRMn7CcxFMIQzTEB1j62Kn' +
-        'gB5irgMhB9TPgcmMjwB7t1aRkUKDwzz9MMH3ASEKLKX_mqjk';
-    var baseURL = 'http://localhost:8888/api/';
+    var applicationServerPublicKey = 'BIGz1vwUy89Bs-h3xzPjuaGidGuOwzXWqzeYOUuBS2M33rcPlpNx-onIHIHNRFKQjchSEFAIilYjRAxDYoizMkg';
+    var baseURL = 'progressiveapp-95420.app.xervo.io/';
     var swRegistration = null;
 
 
@@ -68,14 +67,13 @@ define([], function () {
 
     function updateSubscriptionOnServer(subscription) {
         // TODO: Send subscription to application server
-
-        fetch(baseURL + 'register', {
+        fetch(baseURL + 'push-register', {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
-                endpoint: subscription
+                subscription: subscription
             })
         });
         // const subscriptionJson = document.querySelector('.js-subscription-json');
@@ -133,7 +131,6 @@ define([], function () {
 
     function initialiseUI() {
         pushButton.addEventListener('click', function() {
-            debugger;
             pushButton.disabled = true;
             if (isSubscribed) {
                 unsubscribeUser();
@@ -157,12 +154,6 @@ define([], function () {
                 updateBtn();
             });
     }
-
-
-
-
-
-
 
 
 
@@ -223,7 +214,6 @@ define([], function () {
                 //Start Push Notification Section
                 document.querySelector('#resetButton').addEventListener('click',
                     function() {
-                        debugger;
                         navigator.serviceWorker.getRegistration().then(function(registration) {
                             registration.unregister();
                             window.location.reload();
@@ -232,7 +222,6 @@ define([], function () {
                 );
 
                 document.querySelector('#send').onclick = function() {
-                    debugger;
                     var delay = document.querySelector('#notification-delay').value;
                     var ttl = document.querySelector('#notification-ttl').value;
 

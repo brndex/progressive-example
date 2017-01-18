@@ -13,6 +13,7 @@ var carDealsCacheFiles = [
     'js/clientStorage.js',
     'js/swRegister.js',
     'js/template.js',
+    'js/pushNotification/push-notification.js',
     './',
     'resources/es6-promise/es6-promise.js',
     'resources/fetch/fetch.js',
@@ -74,6 +75,49 @@ self.addEventListener('fetch', function(event){
         event.respondWith(cacheFirstStrategy(event.request));
     }
 });
+
+//start push notification section.
+self.addEventListener('push', function(event) {
+    debugger;
+    console.log('[Service Worker] Push Received', event);
+    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+    const title = 'Ma iti';
+    const options = {
+        body: event.data.text(),
+        icon: 'images/icon.png',
+        badge: 'images/badge.png'
+    };
+
+    event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', function(event) {
+    console.log('[Service Worker] Notification click Received.');
+    console.log('push click event', event);
+    // close the notification popup.
+    event.notification.close();
+
+    event.waitUntil(
+        clients.openWindow('http://vap.brndex.com')
+    );
+});
+
+//end push notification section.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function cacheFirstStrategy(request){
     return caches.match(request).then(function(cacheResponse){
