@@ -1,5 +1,7 @@
 {
   "name": "The Best Car Deals",
+	"gcm_sender_id": "892113676221",
+	"gcm_user_visible_only": true,
   "short_name": "CarDeals",
   "theme_color": "#F44336",
   "background_color": "#f44336",
