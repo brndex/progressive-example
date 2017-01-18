@@ -2,9 +2,9 @@
 
 //New
 
-var carDealsCacheName = 'carDealsCacheV1';
-var carDealsCachePagesName = 'carDealsCachePagesV1';
-var carDealsCacheImagesName = 'carDealsCacheImagesV1';
+var carDealsCacheName = 'carDealsCacheV2';
+var carDealsCachePagesName = 'carDealsCachePagesV2';
+var carDealsCacheImagesName = 'carDealsCacheImagesV2';
 
 var carDealsCacheFiles = [
     'index.html',
