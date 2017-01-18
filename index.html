@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="local.appcache">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,8 +7,7 @@
     <meta name="description" content="The best car deals on the web!">
     <link rel="manifest" href="manifest.json">
     <title>Car Deals</title>
-    <link rel="stylesheet"
-          href="resources/material-design-lite/material.red-indigo.min.css" />
+    <link rel="stylesheet" href="resources/material-design-lite/material.red-indigo.min.css" />
     <script src="resources/material-design-lite/material.min.js"></script>
 
     <!-- App Name -->
@@ -57,6 +56,8 @@
     </style>
 </head>
 <body>
+<!--<a href="push.html">push dashboard</a>-->
+<!--<button class="test">hai</button>-->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
@@ -67,6 +68,10 @@
                         onclick="location.reload()"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
                     Refresh
+                </button>
+
+                <button id="enable-push" class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    Enable Push Messaging
                 </button>
             </nav>
         </div>
@@ -110,6 +115,7 @@
 <!---->
 <script src="resources/fetch/fetch.js"></script>
 <script src="resources/systemjs/system.js"></script>
+<!--<script src="js/pushNotification/push-notification.js"></script>-->
 
 <script>
     System.import('./js/app.js');
