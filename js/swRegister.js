@@ -6,7 +6,7 @@ define([], function () {
     var pushButton = document.querySelector('#enable-push');
     var isSubscribed = false;
     var applicationServerPublicKey = 'BIGz1vwUy89Bs-h3xzPjuaGidGuOwzXWqzeYOUuBS2M33rcPlpNx-onIHIHNRFKQjchSEFAIilYjRAxDYoizMkg';
-    var baseURL = 'http://progressiveapp-95420.app.xervo.io/api/';
+    var baseURL = 'https://progressiveapp-95420.app.xervo.io/api/';
     var swRegistration = null;
 
 
