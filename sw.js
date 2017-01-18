@@ -2,9 +2,9 @@
 
 //New
 
-var carDealsCacheName = 'carDealsCacheV4';
-var carDealsCachePagesName = 'carDealsCachePagesV4';
-var carDealsCacheImagesName = 'carDealsCacheImagesV4';
+var carDealsCacheName = 'carDealsCacheV5';
+var carDealsCachePagesName = 'carDealsCachePagesV5';
+var carDealsCacheImagesName = 'carDealsCacheImagesV5';
 
 var carDealsCacheFiles = [
     'index.html',
@@ -48,6 +48,7 @@ self.addEventListener('activate', function(event){
     event.waitUntil(
         caches.keys()
             .then(function(cacheKeys){
+                debugger;
                 var deletePromises = [];
                 for(var i = 0; i < cacheKeys.length; i++){
                     if(cacheKeys[i] != carDealsCacheName &&
@@ -80,7 +81,7 @@ self.addEventListener('fetch', function(event){
 self.addEventListener('push', function(event) {
     debugger;
     console.log('[Service Worker] Push Received', event);
-    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+    // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
     const title = 'Ma iti';
     const options = {

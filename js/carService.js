@@ -7,6 +7,7 @@ define(['./template.js', './clientStorage.js'], function(template, clientStorage
         fetchPromise()
         .then(function(status){
             document.getElementById("connection-status").innerHTML = status;
+            document.getElementById("connection-status").style.background = "red";
             loadMore();
         });
     }
