@@ -50,6 +50,7 @@ define([], function () {
     }
 
     function updateBtn() {
+        document.getElementById("push-status").innerHTML = 'push feature: ' + Notification.permission;
         if (Notification.permission === 'denied') {
             pushButton.textContent = 'Push Messaging Blocked.';
             pushButton.disabled = true;
