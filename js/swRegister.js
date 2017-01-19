@@ -7,6 +7,7 @@ define([], function () {
     var isSubscribed = false;
     var applicationServerPublicKey = 'BIGz1vwUy89Bs-h3xzPjuaGidGuOwzXWqzeYOUuBS2M33rcPlpNx-onIHIHNRFKQjchSEFAIilYjRAxDYoizMkg';
     var baseURL = 'https://progressiveapp-95420.app.xervo.io/api/';
+    // var baseURL = 'http://localhost:8888/api/';
     var swRegistration = null;
 
 
@@ -31,8 +32,20 @@ define([], function () {
      */
 
 //End Push Notification Section
-
-
+    var sendElem = document.querySelector('#send');
+    if(sendElem) {
+        document.querySelector('#send').onclick = function() {
+            var delay = document.querySelector('#notification-delay').value;
+            var ttl = document.querySelector('#notification-ttl').value;
+            var title = document.querySelector('#notification-title').value;
+            var content = document.querySelector('#notification-content').value;
+            fetch(baseURL + 'sendpush?delay=' + delay + '&ttl=' + ttl + '&title=' + title + '&content=' + content,
+                {
+                    method: 'post'
+                }
+            );
+        };
+    }
 
     function urlB64ToUint8Array(base64String) {
         const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -54,7 +67,7 @@ define([], function () {
         if (Notification.permission === 'denied') {
             pushButton.textContent = 'Push Messaging Blocked.';
             pushButton.disabled = true;
-            updateSubscriptionOnServer(null);
+            // updateSubscriptionOnServer(null);
             return;
         }
 
@@ -96,7 +109,6 @@ define([], function () {
         })
             .then(function(subscription) {
                 console.log('User is subscribed:', subscription);
-
                 if(subscription) {
                     updateSubscriptionOnServer(subscription);
                     isSubscribed = true;
@@ -121,7 +133,7 @@ define([], function () {
                 console.log('Error unsubscribing', error);
             })
             .then(function() {
-                updateSubscriptionOnServer(null);
+                //updateSubscriptionOnServer(null);
 
                 console.log('User is unsubscribed.');
                 isSubscribed = false;
@@ -144,7 +156,6 @@ define([], function () {
         swRegistration.pushManager.getSubscription()
             .then(function(subscription) {
                 isSubscribed = !(subscription === null);
-
                 if (isSubscribed) {
                     updateSubscriptionOnServer(subscription);
                     console.log('User IS subscribed.');
@@ -222,16 +233,6 @@ define([], function () {
                     }
                 );
 
-                document.querySelector('#send').onclick = function() {
-                    var delay = document.querySelector('#notification-delay').value;
-                    var ttl = document.querySelector('#notification-ttl').value;
-
-                    fetch(baseURL + 'sendNotification?endpoint=' + endpoint + '&delay=' + 1 + '&ttl=' + ttl + '&p256dh=' + ab2str(dhkey) + '&auth=' + ab2str(auth),
-                        {
-                            method: 'post'
-                        }
-                    );
-                };
 
 
 

@@ -48,7 +48,6 @@ self.addEventListener('activate', function(event){
     event.waitUntil(
         caches.keys()
             .then(function(cacheKeys){
-                debugger;
                 var deletePromises = [];
                 for(var i = 0; i < cacheKeys.length; i++){
                     if(cacheKeys[i] != carDealsCacheName &&
@@ -83,9 +82,10 @@ self.addEventListener('push', function(event) {
     console.log('[Service Worker] Push Received', event);
     // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
-    const title = 'Ma iti';
+    var data = event.data.json();
+    const title = data.title;
     const options = {
-        body: event.data.text(),
+        body: data.content,
         icon: 'images/icon.png',
         badge: 'images/badge.png'
     };
